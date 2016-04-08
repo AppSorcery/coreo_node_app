@@ -26,9 +26,19 @@ variables:
         required: true
     APP_BUCKET_REGION:
         default: us-east-1
-        description: the region where there vpn backups bucket was created
+        description: the region where there app bucket was created
         overrides: null
         required: true
+    APP_BUCKET_PATH:
+        default:
+        description: the path within $APP_BUCKET from which we should pull the app
+        overrides: null
+        require:true
+    APP_STARTUP_ARGS:
+        default:
+        description: the environment string to pass to node on start
+        overrides: null
+        require:false
     PUBLIC_ROUTE_NAME:
         required: true
         description: the name to give to the public route
@@ -42,6 +52,11 @@ variables:
     APP_NAME:
         default:
         description: the name of the app to launch
+        overrides: null
+        required: true
+    APP_ARCHIVE_NAME:
+    	default:
+    	description: the name of the .tar.gz file which contains your app code
         overrides: null
         required: true
     VPN_ACCESS_CIDRS:

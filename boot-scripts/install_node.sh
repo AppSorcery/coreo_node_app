@@ -16,19 +16,20 @@ ln -s /usr/local/bin/forever-service /usr/bin/forever-service
 mkdir -p /var/app/current
 cd /var/app/current
 
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/dev.zip .
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/app.js .tmp/prerender/
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/app.manifest.json .tmp/public/
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/app.chunk-manifest.json .tmp/public/
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/$APP_ARCHIVE_NAME.tar.gz .
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app.js .tmp/prerender/
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app.manifest.json .tmp/public/
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app.chunk-manifest.json .tmp/public/
       
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/app_public.js .tmp/prerender/
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/app_public.manifest.json .tmp/public/
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/app_public.chunk-manifest.json .tmp/public/
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app_public.js .tmp/prerender/
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app_public.manifest.json .tmp/public/
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app_public.chunk-manifest.json .tmp/public/
       
-aws s3 --region us-east-1 cp s3://cdn.eelrb.com/www/dev/i18n .tmp/prerender/i18n/ --recursive
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/i18n .tmp/prerender/i18n/ --recursive
 
-unzip dev.zip
-tar -xvf dev.tar
+tar -zxvf $APP_ARCHIVE_NAME.tar.gz
 npm install --production
 
-#forever-service install dev2
+forever-service install $APP_NAME --script app.js -o " $APP_STARTUP_ARGS"
+service $APP_NAME start
+

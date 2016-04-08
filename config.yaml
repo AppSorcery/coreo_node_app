@@ -51,6 +51,13 @@ variables:
         overrides: null
         required: true
         type: array
+    TIMEZONE:
+        default: America/Chicago
+        value: America/Chicago
+        description: the timezone the servers should come up in
+        overrides: null
+        required: true
+        type: null
     APP_DNS_PREFIX:
         default: eelrb.com
         description: the dns entry to create for the app
@@ -82,19 +89,18 @@ variables:
         overrides: null
         required: true
         type: null
-    TIMEZONE:
-        default: America/Chicago
-        value: America/Chicago
-        description: the timezone the servers should come up in
-        overrides: null
-        required: true
-        type: null
     REGION:
         default: "INSTANCE::region"
         description: the region we are launching in
         overrides: null
         required: true
         type: string
+    DATADOG_KEY:
+        default: null
+        value: null
+        description: "If you have a datadog key, enter it here and we will install the agent"
+        overrides: null
+        required: false
     APP_AMI_ID:
         description: the ami id of the vpn
         switch: "INSTANCE::region"
@@ -109,9 +115,3 @@ variables:
             ap-southeast-2: ami-fd9cecc7
             sa-east-1: ami-b52890a8
         type: case
-    DATADOG_KEY:
-        default: null
-        value: null
-        description: "If you have a datadog key, enter it here and we will install the agent"
-        overrides: null
-        required: false

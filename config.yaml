@@ -20,7 +20,7 @@ variables:
         required: true
         type: null
     APP_BUCKET:
-        default:
+        default: dev.eelrb.com
         description: the name of the bucket from which we should pull the app
         overrides: null
         required: true
@@ -40,7 +40,7 @@ variables:
         required: true
         type: null
     APP_NAME:
-        default:
+        default: dev
         description: the name of the app to launch
         overrides: null
         required: true
@@ -56,13 +56,13 @@ variables:
         description: the name of the VPC
         default: vpn
     APP_DNS_PREFIX:
-        default:
-        description: "the dns entry to create for the VPN server (<prefix>.<zone>)"
+        default: eelrb.com
+        description: the dns entry to create for the app
         overrides: null
         required: true
         type: null
     DNS_ZONE:
-        default:
+        default: eelrb.com
         description: the dns entry for the zone (i.e. example.com)
         overrides: null
         required: true
@@ -81,7 +81,7 @@ variables:
         required: true
         type: null
     APP_SSH_KEY_NAME:
-        default:
+        default: dev.eelrb.com
         description: What key should the app instance be launched with?
         overrides: null
         required: true

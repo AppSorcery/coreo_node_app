@@ -125,7 +125,7 @@ coreo_aws_ec2_elb "${VPN_NAME}-elb" do
              },
             ]
   health_check_protocol 'http'
-  health_check_port 80
+  health_check_port '80'
   health_check_timeout 5
   health_check_interval 120
   health_check_unhealthy_threshold 5

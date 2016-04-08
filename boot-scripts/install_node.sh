@@ -2,8 +2,8 @@
 
 #install node
 yum -y install npm --enablerepo=epel
-rm /usr/bin/npm
-ln -s /usr/local/bin/npm /usr/bin/npm
+#rm /usr/bin/npm
+#ln -s /usr/local/bin/npm /usr/bin/npm
 npm install -g n
 n latest
 rm /usr/bin/node

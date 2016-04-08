@@ -124,7 +124,7 @@ coreo_aws_ec2_elb "${APP_NAME}-elb" do
                :to_port => 80
              },
             ]
-  health_check_protocol 'http'
+  health_check_protocol 'tcp'
   health_check_port '80'
   health_check_timeout 5
   health_check_interval 120

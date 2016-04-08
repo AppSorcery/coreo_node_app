@@ -79,6 +79,16 @@ variables:
         overrides: null
         required: true
         type: array
+    ELB_TYPE:
+        default: public
+        description: one of public/internal
+        overrides: null
+        required: true
+    ELB_SUBNET_NAME:
+        default: us-east-1-public-subnet
+        description: the name of the subnet the elb should created in (should correspond to ELB_TYPE)
+        overrides: null
+        required: true
     VPN_SSH_ACCESS_CIDRS:
         default:
             - 10.0.0.0/8

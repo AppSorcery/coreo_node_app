@@ -112,9 +112,9 @@ end
 
 coreo_aws_ec2_elb "${APP_NAME}-elb" do
   action :sustain
-  type "public"
+  type "${ELB_TYPE}"
   vpc "${VPC_NAME}"
-  subnet "${PUBLIC_SUBNET_NAME}"
+  subnet "${ELB_SUBNET_NAME}"
   security_groups ["${APP_NAME}-elb-sg"]
   listeners [
              {

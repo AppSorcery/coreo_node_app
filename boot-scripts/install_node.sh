@@ -2,16 +2,16 @@
 
 #install node
 yum -y install npm --enablerepo=epel
-#rm /usr/bin/npm
-#ln -s /usr/local/bin/npm /usr/bin/npm
+rm /usr/bin/npm
+ln -s /usr/local/bin/npm /usr/bin/npm
 npm install -g n
 n latest
-#rm /usr/bin/node
-#ln -s /usr/local/bin/node /usr/bin/node
+rm /usr/bin/node
+ln -s /usr/local/bin/node /usr/bin/node
 npm install sails forever forever-service -g
-#ln -s /usr/local/bin/sails /usr/bin/sails
-#ln -s /usr/local/bin/forever /usr/bin/forever
-#ln -s /usr/local/bin/forever-service /usr/bin/forever-service
+ln -s /usr/local/bin/sails /usr/bin/sails
+ln -s /usr/local/bin/forever /usr/bin/forever
+ln -s /usr/local/bin/forever-service /usr/bin/forever-service
 
 #sudo npm install
 

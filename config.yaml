@@ -40,7 +40,7 @@ variables:
         required: true
         type: null
     APP_NAME:
-        default: dev
+        default: dev2
         description: the name of the app to launch
         overrides: null
         required: true

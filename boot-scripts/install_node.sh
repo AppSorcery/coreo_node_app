@@ -16,7 +16,7 @@ ln -s /usr/local/bin/forever-service /usr/bin/forever-service
 mkdir -p /var/app/current
 cd /var/app/current
 
-aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/$APP_ARCHIVE_NAME.tar.gz .
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/versions/$APP_ARCHIVE_NAME.tar.gz .
 aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app.js .tmp/prerender/
 aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app.manifest.json .tmp/public/
 aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app.chunk-manifest.json .tmp/public/

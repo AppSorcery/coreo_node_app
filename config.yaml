@@ -20,7 +20,7 @@ variables:
         required: true
         type: null
     APP_BUCKET:
-        default: dev.eelrb.com
+        default: dev.amenity.io
         description: the name of the bucket from which we should pull the app
         overrides: null
         required: true
@@ -51,21 +51,14 @@ variables:
         overrides: null
         required: true
         type: array
-    TIMEZONE:
-        default: America/Chicago
-        value: America/Chicago
-        description: the timezone the servers should come up in
-        overrides: null
-        required: true
-        type: null
     APP_DNS_PREFIX:
-        default: eelrb.com
+        default: dev2
         description: the dns entry to create for the app
         overrides: null
         required: true
         type: null
     DNS_ZONE:
-        default: eelrb.com
+        default: amenity.io
         description: the dns entry for the zone (i.e. example.com)
         overrides: null
         required: true
@@ -84,8 +77,15 @@ variables:
         required: true
         type: null
     APP_SSH_KEY_NAME:
-        default: dev.eelrb.com
+        default: dev.amenity.io
         description: What key should the app instance be launched with?
+        overrides: null
+        required: true
+        type: null
+    TIMEZONE:
+        default: America/Chicago
+        value: America/Chicago
+        description: the timezone the servers should come up in
         overrides: null
         required: true
         type: null
@@ -95,12 +95,6 @@ variables:
         overrides: null
         required: true
         type: string
-    DATADOG_KEY:
-        default: null
-        value: null
-        description: "If you have a datadog key, enter it here and we will install the agent"
-        overrides: null
-        required: false
     APP_AMI_ID:
         description: the ami id of the vpn
         switch: "INSTANCE::region"
@@ -115,3 +109,9 @@ variables:
             ap-southeast-2: ami-fd9cecc7
             sa-east-1: ami-b52890a8
         type: case
+    DATADOG_KEY:
+        default: null
+        value: null
+        description: "If you have a datadog key, enter it here and we will install the agent"
+        overrides: null
+        required: false

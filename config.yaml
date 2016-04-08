@@ -51,10 +51,6 @@ variables:
         overrides: null
         required: true
         type: array
-    VPN_NAME:
-        required: true
-        description: the name of the VPC
-        default: vpn
     APP_DNS_PREFIX:
         default: eelrb.com
         description: the dns entry to create for the app

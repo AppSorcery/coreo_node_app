@@ -110,7 +110,7 @@ coreo_aws_ec2_securityGroups "${APP_NAME}-elb-sg" do
     ]
 end
 
-coreo_aws_ec2_elb "${VPN_NAME}-elb" do
+coreo_aws_ec2_elb "${APP_NAME}-elb" do
   action :sustain
   type "public"
   vpc "${VPC_NAME}"
@@ -208,7 +208,7 @@ coreo_aws_iam_instance_profile "${APP_NAME}" do
   policies ["${APP_NAME}-route53"]
 end
 
-coreo_aws_ec2_instance "${VPN_NAME}" do
+coreo_aws_ec2_instance "${APP_NAME}" do
   action :define
   upgrade_trigger "1"
   image_id "${APP_AMI_ID}"

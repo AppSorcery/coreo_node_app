@@ -79,17 +79,17 @@ coreo_aws_ec2_securityGroups "${APP_NAME}-elb-sg" do
           { 
             :direction => :ingress,
             :protocol => :tcp,
-            :ports => [${0..65535}],
+            :ports => [0..65535],
             :cidrs => ${VPN_ACCESS_CIDRS},
           },{ 
             :direction => :ingress,
             :protocol => :udp,
-            :ports => [${0..65535}],
+            :ports => [0..65535],
             :cidrs => ${VPN_ACCESS_CIDRS},
           },{ 
             :direction => :ingress,
             :protocol => :icmp,
-            :ports => [${0..65535}],
+            :ports => [0..65535],
             :cidrs => ${VPN_ACCESS_CIDRS},
           },{ 
             :direction => :egress,
@@ -104,7 +104,7 @@ coreo_aws_ec2_securityGroups "${APP_NAME}-elb-sg" do
           },{ 
             :direction => :egress,
             :protocol => :icmp,
-            :ports => [${0..65535}],
+            :ports => [0..65535],
             :cidrs => ${VPN_ACCESS_CIDRS},
           }
     ]

@@ -33,16 +33,6 @@ aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/$APP_ARC
 tar -zxvf $APP_ARCHIVE_NAME.tar.gz
 npm install --production
 
-echo "ELB_NAME: $ELB_NAME"
-ELB_NAME=${ELB_NAME/internal-/}
-ELB_NAME=${ELB_NAME/private-/}
-ELB_NAME=($(echo $ELB_NAME | sed 's/-elb-.*/-elb/'))
-echo "ELB_NAME: $ELB_NAME"
-
-aws elb describe-load-balancers --region us-east-1 --load-balancer-name $ELB_NAME
-aws elb create-load-balancer-policy --region us-east-1 --load-balancer-name $ELB_NAME --policy-name $APP_NAME-elb --policy-type-name ProxyProtocolPolicyType --policy-attributes AttributeName=ProxyProtocol,AttributeValue=true
-aws elb set-load-balancer-policies-for-backend-server --region us-east-1 --load-balancer-name $ELB_NAME --instance-port 80 --policy-names $APP_NAME-elb
-aws elb describe-load-balancers --region us-east-1 --load-balancer-name $ELB_NAME
 
 echo "forever-service install $APP_NAME --script app.js -o \" $APP_STARTUP_ARGS\""
 forever-service install $APP_NAME --script app.js -o " $APP_STARTUP_ARGS"

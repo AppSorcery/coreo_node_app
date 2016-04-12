@@ -79,10 +79,6 @@ variables:
         overrides: null
         required: true
         type: array
-    ELB_NAME:
-        default: "STACK::coreo_aws_ec2_elb.dev-elb.dns_name"
-        required: true
-        descripiton: comma seperated list of the private subnet ids
     ELB_TYPE:
         default: public
         description: one of public/internal
@@ -113,6 +109,20 @@ variables:
         overrides: null
         required: true
         type: null
+    ELB_NAME:
+        default: "STACK::coreo_aws_ec2_elb.dev-elb.dns_name"
+        required: true
+        descripiton: comma seperated list of the private subnet ids
+    ELB_PROXY_PORT:
+        default: 80
+        description: elb proxy port
+        overrides: null
+        required: true
+    APP_PORT:
+        default: 3000
+        description: upstream app port
+        overrides: null
+        required: true
     REGION:
         default: "INSTANCE::region"
         description: the region we are launching in

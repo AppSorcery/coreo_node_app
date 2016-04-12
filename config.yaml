@@ -40,7 +40,7 @@ variables:
     VPC_NAME:
         required: true
         description: the name of the VPC
-        default: us-east-1-vpc
+        default: vpc
     VPC_OCTETS:
         default: 10.11.0.0
         description: null
@@ -50,9 +50,9 @@ variables:
     PRIVATE_ROUTE_NAME:
         required: true
         description: the name to give to the private route
-        default: us-east-1-private-route
+        default: private-route
     PRIVATE_SUBNET_NAME:
-        default: us-east-1-private-subnet
+        default: private-subnet
         description: null
         overrides: null
         required: true
@@ -65,9 +65,9 @@ variables:
     PUBLIC_ROUTE_NAME:
         required: true
         description: the name to give to the public route
-        default: us-east-1-public-route
+        default: public-route
     PUBLIC_SUBNET_NAME:
-        default: us-east-1-public-subnet
+        default: public-subnet
         description: null
         overrides: null
         required: true
@@ -85,7 +85,7 @@ variables:
         overrides: null
         required: true
     ELB_SUBNET_NAME:
-        default: us-east-1-public-subnet
+        default: public-subnet
         description: the name of the subnet the elb should created in (should correspond to ELB_TYPE)
         overrides: null
         required: true

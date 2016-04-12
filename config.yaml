@@ -79,6 +79,10 @@ variables:
         overrides: null
         required: true
         type: array
+    ELB_NAME:
+        default: "STACK::coreo_aws_ec2_elb.dev-elb.name"
+        required: true
+        descripiton: comma seperated list of the private subnet ids
     ELB_TYPE:
         default: public
         description: one of public/internal

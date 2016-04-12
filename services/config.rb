@@ -223,9 +223,30 @@ coreo_aws_iam_policy "${APP_NAME}-rds" do
 EOH
 end
 
+coreo_aws_iam_policy "${APP_NAME}-elb" do
+  action :sustain
+  policy_name "${APP_NAME}ELBManagement"
+  policy_document <<-EOH
+{
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": [
+          "*"
+      ],
+      "Action": [ 
+          "elasticloadbalancing:*"
+      ]
+    }
+  ]
+}
+EOH
+end
+
+
 coreo_aws_iam_instance_profile "${APP_NAME}" do
   action :sustain
-  policies ["${APP_NAME}-route53", "${APP_NAME}-rds"]
+  policies ["${APP_NAME}-route53", "${APP_NAME}-rds", "${APP_NAME}-elb"]
 end
 
 coreo_aws_ec2_instance "${APP_NAME}" do

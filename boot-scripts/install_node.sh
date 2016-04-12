@@ -27,6 +27,9 @@ aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/app_publ
       
 aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/i18n .tmp/prerender/i18n/ --recursive
 
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/favicon .tmp/public --recursive
+aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/sails.io.js .tmp/public/
+
 tar -zxvf $APP_ARCHIVE_NAME.tar.gz
 npm install --production
 

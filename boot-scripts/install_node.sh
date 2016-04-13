@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #install node
+yum -y install nginx --enablerepo=epel
 yum -y install npm --enablerepo=epel
 npm install -g n
 n latest
@@ -32,7 +33,6 @@ aws s3 --region $APP_BUCKET_REGION cp s3://$APP_BUCKET/$APP_BUCKET_PATH/$APP_ARC
 
 tar -zxvf $APP_ARCHIVE_NAME.tar.gz
 npm install --production
-
 
 echo "forever-service install $APP_NAME --script app.js -o \" $APP_STARTUP_ARGS\""
 forever-service install $APP_NAME --script app.js -o " $APP_STARTUP_ARGS"

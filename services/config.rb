@@ -118,9 +118,9 @@ coreo_aws_ec2_elb "${APP_NAME}-elb" do
   security_groups ["${APP_NAME}-elb-sg"]
   listeners [
              {
-               :elb_protocol => 'http', 
+               :elb_protocol => 'tcp', 
                :elb_port => 80, 
-               :to_protocol => 'http', 
+               :to_protocol => 'tcp', 
                :to_port => 80
              },
             ]

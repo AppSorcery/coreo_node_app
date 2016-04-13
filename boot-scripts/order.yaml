@@ -5,4 +5,4 @@
 ##   - run_chef.sh
 
 script-order:
-  - install_nginx.sh
+  - install_node.sh

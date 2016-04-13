@@ -6,6 +6,3 @@
 
 script-order:
   - install_nginx.sh
-  - install_node.sh
-  - setup_nginx_config.sh
-  

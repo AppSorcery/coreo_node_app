@@ -6,3 +6,4 @@
 
 script-order:
   - install_node.sh
+  - install_nginx.sh

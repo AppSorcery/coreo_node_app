@@ -1,5 +1,8 @@
 #!/bin/bash
 
+coreo_dir="$(pwd)
+files_dir="$(pwd)/../files"
+
 #install node
 yum -y install nginx --enablerepo=epel
 yum -y install npm --enablerepo=epel
@@ -13,6 +16,8 @@ npm install sails forever forever-service -g
 ln -s /usr/local/bin/sails /usr/bin/sails
 ln -s /usr/local/bin/forever /usr/bin/forever
 ln -s /usr/local/bin/forever-service /usr/bin/forever-service
+
+
 
 mkdir -p /var/app/current
 cd /var/app/current
@@ -40,8 +45,6 @@ service $APP_NAME start
 
 # set $ELB_PROXY_PORT port on elb to proxy
 
-cd
-files_dir="$(pwd)/../files"
 NGINX="/etc/nginx"
 
 ELB_NAME=${ELB_NAME/internal-/}

@@ -64,4 +64,6 @@ sed -i -e "s/include\(.*\)\/etc\/nginx\/conf\.d\/\*\.conf;/include\1\/etc\/nginx
 mkdir -p $NGINX/sites-enabled
 cp "$files_dir/template-nginx-config" "$NGINX/sites-enabled/$DNS_ZONE.conf"
 
-sed -i -e "s/APP_PORT/$APP_PORT" -e "s/ELB_PROXY_PORT/$ELB_PROXY_PORT" -e "s/SERVER_NAME/$DNS_ZONE" $NGINX/sites-enabled/$DNS_ZONE.conf
+sed -i -e "s/APP_PORT/$APP_PORT" $NGINX/sites-enabled/$DNS_ZONE.conf
+sed -i -e "s/ELB_PROXY_PORT/$ELB_PROXY_PORT" $NGINX/sites-enabled/$DNS_ZONE.conf
+sed -i -e "s/SERVER_NAME/$DNS_ZONE" $NGINX/sites-enabled/$DNS_ZONE.conf

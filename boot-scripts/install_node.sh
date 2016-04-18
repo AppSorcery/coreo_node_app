@@ -66,9 +66,9 @@ mkdir -p $NGINX/sites-enabled
 cp "$files_dir/template-nginx-config" "$NGINX/sites-available/$DNS_ZONE.conf"
 ln -s "$NGINX/sites-available/$DNS_ZONE.conf" "$NGINX/sites-enabled/$DNS_ZONE.conf"
 
-sed -i -e "s/APP_PORT/$APP_PORT/" $NGINX/sites-enabled/$DNS_ZONE.conf
-sed -i -e "s/ELB_PROXY_PORT/$ELB_PROXY_PORT/" $NGINX/sites-enabled/$DNS_ZONE.conf
-sed -i -e "s/SERVER_NAME/*.$DNS_ZONE/" $NGINX/sites-enabled/$DNS_ZONE.conf
+sed -i -e "s/APP_PORT/$APP_PORT/" $NGINX/sites-available/$DNS_ZONE.conf
+sed -i -e "s/ELB_PROXY_PORT/$ELB_PROXY_PORT/" $NGINX/sites-available/$DNS_ZONE.conf
+sed -i -e "s/SERVER_NAME/*.$DNS_ZONE/" $NGINX/sites-available/$DNS_ZONE.conf
 
 service nginx restart
 

@@ -183,50 +183,9 @@ coreo_aws_ec2_securityGroups "${APP_NAME}-sg" do
     ]
 end
 
-coreo_aws_iam_policy "${APP_NAME}-rds" do
-  action :sustain
-  policy_name "${APP_NAME}RDSManagement"
-  policy_document <<-EOH
-{
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Resource": [
-          "*"
-      ],
-      "Action": [ 
-          "rds:*"
-      ]
-    }
-  ]
-}
-EOH
-end
-
-coreo_aws_iam_policy "${APP_NAME}-elb" do
-  action :sustain
-  policy_name "${APP_NAME}ELBManagement"
-  policy_document <<-EOH
-{
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Resource": [
-          "*"
-      ],
-      "Action": [ 
-          "elasticloadbalancing:*"
-      ]
-    }
-  ]
-}
-EOH
-end
-
-
 coreo_aws_iam_instance_profile "${APP_NAME}" do
   action :sustain
-  policies ["${APP_NAME}-rds", "${APP_NAME}-elb"]
+  policies []
 end
 
 coreo_aws_ec2_instance "${APP_NAME}" do

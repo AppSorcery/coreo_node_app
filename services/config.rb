@@ -183,9 +183,73 @@ coreo_aws_ec2_securityGroups "${APP_NAME}-sg" do
     ]
 end
 
+coreo_aws_iam_policy "${APP_NAME}-route53" do
+  action :sustain
+  policy_type "inline"
+  policy_name "${APP_NAME}Route53Management"
+  policy_document <<-EOH
+{
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": [
+          "*"
+      ],
+      "Action": [ 
+          "route53:*"
+      ]
+    }
+  ]
+}
+EOH
+end
+
+coreo_aws_iam_policy "${APP_NAME}-rds" do
+  action :sustain
+  policy_name "${APP_NAME}RDSManagement"
+  policy_type "inline"
+  policy_document <<-EOH
+{
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": [
+          "*"
+      ],
+      "Action": [ 
+          "rds:*"
+      ]
+    }
+  ]
+}
+EOH
+end
+
+coreo_aws_iam_policy "${APP_NAME}-elb" do
+  action :sustain
+  policy_name "${APP_NAME}ELBManagement"
+  policy_type "inline"
+  policy_document <<-EOH
+{
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": [
+          "*"
+      ],
+      "Action": [ 
+          "elasticloadbalancing:*"
+      ]
+    }
+  ]
+}
+EOH
+end
+
+
 coreo_aws_iam_instance_profile "${APP_NAME}" do
   action :sustain
-  policies []
+  policies ["${APP_NAME}-route53", "${APP_NAME}-rds", "${APP_NAME}-elb"]
 end
 
 coreo_aws_ec2_instance "${APP_NAME}" do

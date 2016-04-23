@@ -13,8 +13,7 @@ server {
 server {
   listen       ELB_HEALTH_CHECK_PORT;
   server_name  SERVER_NAME;
-  root         /usr/share/nginx/html;
-
+  
   # Load configuration files for the default server block.
   include /etc/nginx/default.d/*.conf;
 

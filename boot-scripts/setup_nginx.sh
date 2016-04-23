@@ -5,7 +5,7 @@ files_dir="$(pwd)/../files"
 
 NGINX="/etc/nginx"
 
-sed -i -e "s/\"$http_x_forwarded_for\"/\"$http_x_forwarded_for\" \"$server_port\"/" $NGINX/nginx.conf
+sed -i -e "s/\"\$http_x_forwarded_for\"/\"\$http_x_forwarded_for\" \"\$server_port\"/" $NGINX/nginx.conf
 sed -i -e "s/include\(.*\)\/etc\/nginx\/conf\.d\/\*\.conf;/include\1\/etc\/nginx\/conf.d\/*.conf;\n    include \/etc\/nginx\/sites-enabled\/*;\n/" $NGINX/nginx.conf
 
 mkdir -p $NGINX/sites-available

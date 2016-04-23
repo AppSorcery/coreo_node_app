@@ -5,4 +5,11 @@
 ##   - run_chef.sh
 
 script-order:
+  - setup_elb_proxy.sh
   - install_node.sh
+  - setup_node.sh
+  - install_nginx.sh
+  - setup_nginx.sh
+  - install_forever.sh
+  - setup_forever.sh
+  

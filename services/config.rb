@@ -119,13 +119,19 @@ coreo_aws_ec2_elb "${APP_NAME}-elb" do
   listeners [
              {
                :elb_protocol => 'tcp', 
-               :elb_port => 80, 
+               :elb_port => ${ELB_PROXY_PORT}, 
                :to_protocol => 'tcp', 
-               :to_port => 80
+               :to_port => ${ELB_PROXY_PORT}
+             },
+             {
+               :elb_protocol => 'tcp', #should be ssl, but aws requires cert and coreo doesn't support ACM certs yet...
+               :elb_port => ${ELB_SSL_PROXY_PORT}, 
+               :to_protocol => 'tcp', 
+               :to_port => ${ELB_HEALTH_CHECK_PORT}
              },
             ]
   health_check_protocol 'tcp'
-  health_check_port "80"
+  health_check_port "$ELB_HEALTH_CHECK_PORT"
   health_check_timeout 5
   health_check_interval 120
   health_check_unhealthy_threshold 5
@@ -183,27 +189,6 @@ coreo_aws_ec2_securityGroups "${APP_NAME}-sg" do
     ]
 end
 
-coreo_aws_iam_policy "${APP_NAME}-route53" do
-  action :sustain
-  policy_type "inline"
-  policy_name "${APP_NAME}Route53Management"
-  policy_document <<-EOH
-{
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Resource": [
-          "*"
-      ],
-      "Action": [ 
-          "route53:*"
-      ]
-    }
-  ]
-}
-EOH
-end
-
 coreo_aws_iam_policy "${APP_NAME}-rds" do
   action :sustain
   policy_name "${APP_NAME}RDSManagement"
@@ -249,7 +234,7 @@ end
 
 coreo_aws_iam_instance_profile "${APP_NAME}" do
   action :sustain
-  policies ["${APP_NAME}-route53", "${APP_NAME}-rds", "${APP_NAME}-elb"]
+  policies ["${APP_NAME}-rds", "${APP_NAME}-elb"]
 end
 
 coreo_aws_ec2_instance "${APP_NAME}" do

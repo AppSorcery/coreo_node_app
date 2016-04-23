@@ -5,14 +5,26 @@ upstream node {
 }
 
 server {
-  listen       ELB_PROXY_PORT proxy_protocol;
-  server_name  SERVER_NAME;
+  listen      ELB_PROXY_PORT proxy_protocol;
+  server_name *.SERVER_NAME;
   return 301 https://$host$request_uri;
 }
-    
+
+server {
+  listen      ELB_PROXY_PORT proxy_protocol;
+  server_name SERVER_NAME;
+  return 301 https://www.$host$request_uri;
+}
+
+server {
+  listen      ELB_HEALTH_CHECK_PORT;
+  server_name SERVER_NAME;
+  return 301 https://www.$host$request_uri;
+}
+
 server {
   listen       ELB_HEALTH_CHECK_PORT;
-  server_name  SERVER_NAME;
+  server_name  *.SERVER_NAME;
   
   # Load configuration files for the default server block.
   include /etc/nginx/default.d/*.conf;

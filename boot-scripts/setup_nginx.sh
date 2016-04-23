@@ -16,7 +16,7 @@ ln -s "$NGINX/sites-available/$DNS_ZONE.conf" "$NGINX/sites-enabled/$DNS_ZONE.co
 sed -i -e "s/APP_PORT/$APP_PORT/g" $NGINX/sites-available/$DNS_ZONE.conf
 sed -i -e "s/ELB_PROXY_PORT/$ELB_PROXY_PORT/g" $NGINX/sites-available/$DNS_ZONE.conf
 sed -i -e "s/ELB_HEALTH_CHECK_PORT/$ELB_HEALTH_CHECK_PORT/g" $NGINX/sites-available/$DNS_ZONE.conf
-sed -i -e "s/SERVER_NAME/*.$DNS_ZONE/g" $NGINX/sites-available/$DNS_ZONE.conf
+sed -i -e "s/SERVER_NAME/$DNS_ZONE/g" $NGINX/sites-available/$DNS_ZONE.conf
 
 service nginx restart
 /sbin/chkconfig nginx on

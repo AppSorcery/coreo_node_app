@@ -231,10 +231,31 @@ coreo_aws_iam_policy "${APP_NAME}-elb" do
 EOH
 end
 
+coreo_aws_iam_policy "${APP_NAME}-ses" do
+  action :sustain
+  policy_name "${APP_NAME}SESManagement"
+  policy_type "inline"
+  policy_document <<-EOH
+{
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ],
+            "Action": [
+                "ses:*"
+            ]
+
+        }
+    ]
+}
+EOH
+end
 
 coreo_aws_iam_instance_profile "${APP_NAME}" do
   action :sustain
-  policies ["${APP_NAME}-rds", "${APP_NAME}-elb"]
+  policies ["${APP_NAME}-rds", "${APP_NAME}-elb", "${APP_NAME}-ses"]
 end
 
 coreo_aws_ec2_instance "${APP_NAME}" do

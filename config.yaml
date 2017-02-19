@@ -42,7 +42,7 @@ variables:
         description: the name of the VPC
         default: vpc
     VPC_OCTETS:
-        default: 10.1.0.0
+        default: 10.11.0.0
         description: null
         overrides: null
         required: true

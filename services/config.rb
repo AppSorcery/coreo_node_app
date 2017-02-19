@@ -142,7 +142,7 @@ coreo_aws_route53_record "${APP_DNS_PREFIX}" do
   action :sustain
   type "CNAME"
   zone "${DNS_ZONE}"
-  values ["STACK::coreo_aws_ec2_elb.${APP_NAME}-elb.dns_name"]
+  values ["COMPOSITE::coreo_aws_ec2_elb.${APP_NAME}-elb.dns_name"]
 end
 
 coreo_aws_ec2_securityGroups "${APP_NAME}-sg" do

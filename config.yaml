@@ -125,7 +125,7 @@ variables:
         required: true
         type: null
     ELB_NAME:
-        default: "STACK::coreo_aws_ec2_elb.dev-elb.dns_name"
+        default: "COMPOSITE::coreo_aws_ec2_elb.dev-elb.dns_name"
         required: true
         descripiton: comma seperated list of the private subnet ids
     APP_PORT:
